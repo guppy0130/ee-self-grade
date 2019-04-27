@@ -1,0 +1,24 @@
+{
+  "name": "ee-self-grade",
+  "version": "1.0.0",
+  "description": "EE16 series self-grade response generator",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "mocha tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/guppy0130/ee-self-grade.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/guppy0130/ee-self-grade/issues"
+  },
+  "homepage": "https://github.com/guppy0130/ee-self-grade#readme",
+  "devDependencies": {
+    "eslint": "^5.16.0",
+    "mocha": "^6.1.4"
+  }
+}
