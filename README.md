@@ -10,7 +10,7 @@ I made this because I was tired of putting in name/email/SID all the time, and b
 git clone https://github.com/guppy0130/ee-self-grade.git
 cd ee-self-grade
 npm i --production # unless you want devDependencies to improve content
-npm start
+npm start # or node index.js
 ```
 
 ## Dependencies
