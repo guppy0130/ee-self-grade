@@ -1,1 +1,3 @@
 node_modules/
+/selfgrades/
+/info.json

@@ -4,8 +4,7 @@
   "description": "EE16 series self-grade response generator",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "test": "mocha tests"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -18,7 +17,9 @@
   },
   "homepage": "https://github.com/guppy0130/ee-self-grade#readme",
   "devDependencies": {
-    "eslint": "^5.16.0",
-    "mocha": "^6.1.4"
+    "eslint": "^5.16.0"
+  },
+  "dependencies": {
+    "inquirer": "^6.3.1"
   }
 }
