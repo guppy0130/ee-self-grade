@@ -11,10 +11,9 @@ I made this because I was tired of putting in name/email/SID all the time, and b
 ```bash
 git clone https://github.com/guppy0130/ee-self-grade.git
 cd ee-self-grade
-npm i --production # unless you want devDependencies to improve content
-npm start # or node index.js
+npm i --production  # unless you want devDependencies to improve content
+npm start           # or node kickoff.js
 ```
 
 ## Dependencies
 * Node
-    * [inquirer](https://www.npmjs.com/package/inquirer)
