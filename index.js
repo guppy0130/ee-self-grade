@@ -48,13 +48,7 @@ const folderCheck = async () => {
 };
 
 const readInUserData = async () => {
-    let data;
-    try {
-        data = await fs.promises.readFile(info, 'utf8');
-        return JSON.parse(data);
-    } catch (e) {
-        throw e;
-    }
+    return JSON.parse(await fs.promises.readFile(info, 'utf8'));
 };
 
 const validateInt = (input) => {
