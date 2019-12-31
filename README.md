@@ -2,6 +2,8 @@
 
 ## EE16 series self-grade response generator
 
+[![Build Status](https://travis-ci.com/guppy0130/ee-self-grade.svg?branch=master)](https://travis-ci.com/guppy0130/ee-self-grade)
+
 I made this because I was tired of putting in name/email/SID all the time, and because I always did my best to redo the homework the second round through, so I wanted to automate those away.
 
 ## Installation/Usage
