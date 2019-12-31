@@ -1,20 +1,7 @@
 const fs = require('fs');
 const inquirer = require('inquirer');
 
-let assignment = 'selfgrades-';
 const info = './info.json';
-
-let user = {
-    name: null,
-    email: null,
-    sid: null
-};
-
-let userFull = {
-    name: null,
-    email: null,
-    sid: null
-};
 
 const writeFile = (path, data) => {
     console.log(`Writing ${path}`);
@@ -61,13 +48,16 @@ const folderCheck = async () => {
 };
 
 const readInUserData = async () => {
-    return fs.readFile(info, (err, data) => {
-        user = JSON.parse(data);
-        userFull = JSON.parse(data);
-    });
+    let data;
+    try {
+        data = await fs.promises.readFile(info, 'utf8');
+        return JSON.parse(data);
+    } catch (e) {
+        throw e;
+    }
 };
 
-const validateInt = async (input) => {
+const validateInt = (input) => {
     return input > 0 ? true : 'A value > 0 required.';
 };
 
@@ -75,7 +65,7 @@ const validateText = async (input) => {
     return input.length > 0 ? true : 'A comment is required if score is not 0 or 10.';
 };
 
-const problems = (maxOuter, currOuter) => {
+const problems = (user, userFull, maxOuter, currOuter) => {
     console.log(`Question ${currOuter}`);
     return inquirer.prompt([{
         type: 'number',
@@ -83,10 +73,10 @@ const problems = (maxOuter, currOuter) => {
         message: 'How many subproblems?',
         validate: validateInt
     }]).then(answers => {
-        return subproblems(answers.innerQCount, currOuter, 1);
+        return subproblems(user, userFull, answers.innerQCount, currOuter, 1);
     }).then(() => {
         if (currOuter < maxOuter) {
-            return problems(maxOuter, currOuter + 1);
+            return problems(user, userFull, maxOuter, currOuter + 1);
         }
     });
 };
@@ -104,7 +94,7 @@ let toLetters = (num) => {
     return ret;
 };
 
-const subproblems = (maxInner, outerQ, currInner) => {
+const subproblems = (user, userFull, maxInner, outerQ, currInner) => {
     let letter = toLetters(currInner);
 
     return inquirer.prompt([{
@@ -126,33 +116,18 @@ const subproblems = (maxInner, outerQ, currInner) => {
         }
     }).then(() => {
         if (currInner < maxInner) {
-            return subproblems(maxInner, outerQ, currInner + 1);
+            return subproblems(user, userFull, maxInner, outerQ, currInner + 1);
         }
     });
 };
 
-let kickoff = async () => {
-    await infoCheck();
-    await readInUserData();
-    await folderCheck();
-
-    return inquirer.prompt([{
-        type: 'number',
-        name: 'hwNumber',
-        message: 'HW #?',
-        validate: validateInt
-    },{
-        type: 'number',
-        name: 'outerQCount',
-        message: 'How many numbered questions?',
-        validate: validateInt
-    }]).then(answers => {
-        assignment += answers.hwNumber;
-        return problems(answers.outerQCount, 1);
-    }).then(() => {
-        writeFile(`./selfgrades/${assignment}.txt`, user);
-        writeFile(`./selfgrades/${assignment}-redo.txt`, userFull);
-    });
+module.exports = {
+    infoCheck,
+    readInUserData,
+    folderCheck,
+    validateInt,
+    problems,
+    writeFile,
+    toLetters,
+    subproblems
 };
-
-kickoff();

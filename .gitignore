@@ -1,3 +1,4 @@
 node_modules/
-/selfgrades/
-/info.json
+selfgrades/
+info.json
+*.swp
