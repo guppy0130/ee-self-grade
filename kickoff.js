@@ -25,8 +25,8 @@ let kickoff = async () => {
         assignment += answers.hwNumber;
         return problems(user, userFull, answers.outerQCount, 1);
     }).then(() => {
-        writeFile(`./selfgrades/${assignment}.txt`, user);
-        writeFile(`./selfgrades/${assignment}-redo.txt`, userFull);
+        writeFile(`./selfgrades/${assignment}.json`, user);
+        writeFile(`./selfgrades/${assignment}-redo.json`, userFull);
     });
 };
 

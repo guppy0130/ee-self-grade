@@ -32,7 +32,7 @@ describe('Utility Functions', function() {
                 }
             });
 
-            writeFile('test.txt', user);
+            writeFile('test.json', user);
             sinon.assert.calledTwice(logStub);
             sinon.assert.calledOnce(fsStub);
         });
